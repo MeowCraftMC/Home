@@ -47,6 +47,7 @@ public final class Home extends JavaPlugin {
                 return false;
             }
             player.teleport(target);
+            player.sendMessage(ChatColor.GREEN + "Teleport to home " + (path.equalsIgnoreCase("home") ? "" : ChatColor.WHITE + path) + ChatColor.GREEN + ".");
             return true;
         }
         if (command.getName().equalsIgnoreCase("sethome")) {
@@ -57,6 +58,7 @@ public final class Home extends JavaPlugin {
             catch (IOException e) {
                 return false;
             }
+            player.sendMessage(ChatColor.GREEN + "Set your location as home " + (path.equalsIgnoreCase("home") ? "" : ChatColor.WHITE + path) + ChatColor.GREEN + ".");
             return true;
         }
         if (command.getName().equalsIgnoreCase("delhome")) {
@@ -67,6 +69,7 @@ public final class Home extends JavaPlugin {
             catch (IOException e) {
                 return false;
             }
+            player.sendMessage(ChatColor.YELLOW + "Deleted.");
             return true;
         }
         return false;
