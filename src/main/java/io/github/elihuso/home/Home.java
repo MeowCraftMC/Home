@@ -4,6 +4,7 @@ import org.bukkit.ChatColor;
 import org.bukkit.Location;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
+import org.bukkit.configuration.Configuration;
 import org.bukkit.configuration.file.FileConfiguration;
 import org.bukkit.configuration.file.YamlConfiguration;
 import org.bukkit.entity.Player;
@@ -11,6 +12,7 @@ import org.bukkit.plugin.java.JavaPlugin;
 import org.jetbrains.annotations.NotNull;
 
 import java.io.IOException;
+import java.util.Set;
 
 public final class Home extends JavaPlugin {
     @Override
@@ -71,6 +73,18 @@ public final class Home extends JavaPlugin {
             }
             player.sendMessage(ChatColor.YELLOW + "Deleted.");
             return true;
+        }
+        if (command.getName().equalsIgnoreCase("listhome")) {
+            Set<String> homeSet = config.getKeys(false);
+            String[] homes = homeSet.toArray(String[]::new);
+            if (homes.length == 0) {
+                player.sendMessage(ChatColor.RED + "You have never set a home!");
+                return false;
+            }
+            player.sendMessage("Homes you set:");
+            for (String v : homes) {
+                player.sendMessage(ChatColor.AQUA + v);
+            }
         }
         return false;
     }

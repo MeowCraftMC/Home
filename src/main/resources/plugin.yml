@@ -12,6 +12,9 @@ commands:
   delhome:
     permission: home.del
     aliases: [homedel, deletehome, homedelete]
+  listhome:
+    permission: home.list
+    aliases: [homelist]
 
 permissions:
   home.home:
@@ -19,4 +22,6 @@ permissions:
   home.set:
     default: true
   home.del:
+    default: true
+  home.list:
     default: true
