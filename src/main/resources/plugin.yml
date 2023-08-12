@@ -1,0 +1,22 @@
+name: Home
+version: '${version}'
+main: io.github.elihuso.home.Home
+api-version: '1.16'
+
+commands:
+  home:
+    permission: home.home
+  sethome:
+    permission: home.set
+    aliases: [homeset]
+  delhome:
+    permission: home.del
+    aliases: [homedel, deletehome, homedelete]
+
+permissions:
+  home.home:
+    default: true
+  home.set:
+    default: true
+  home.del:
+    default: true
