@@ -24,16 +24,14 @@ public final class Home extends JavaPlugin {
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String commandLabel, String[] args) {
         if (!(sender instanceof Player))
             return false;
-        Player player = (Player)sender;
+        Player player = (Player) sender;
         FileConfiguration config = new YamlConfiguration();
         try {
             config.load(this.getDataFolder() + "/" + player.getUniqueId().toString());
-        }
-        catch (Exception ex) {
+        } catch (Exception ex) {
             try {
                 config.save(this.getDataFolder() + "/" + player.getUniqueId().toString());
-            }
-            catch (Exception exception) {
+            } catch (Exception exception) {
                 return false;
             }
         }
@@ -56,8 +54,7 @@ public final class Home extends JavaPlugin {
             config.set(path, player.getLocation());
             try {
                 config.save(this.getDataFolder() + "/" + player.getUniqueId().toString());
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 return false;
             }
             player.sendMessage(ChatColor.GREEN + "Set your location as home " + (path.equalsIgnoreCase("home") ? "" : ChatColor.WHITE + path) + ChatColor.GREEN + ".");
@@ -67,8 +64,7 @@ public final class Home extends JavaPlugin {
             config.set(path, null);
             try {
                 config.save(this.getDataFolder() + "/" + player.getUniqueId().toString());
-            }
-            catch (IOException e) {
+            } catch (IOException e) {
                 return false;
             }
             player.sendMessage(ChatColor.YELLOW + "Deleted.");
@@ -81,9 +77,14 @@ public final class Home extends JavaPlugin {
                 player.sendMessage(ChatColor.RED + "You have never set a home!");
                 return false;
             }
-            player.sendMessage("Homes you set:");
+            player.sendMessage("Homes you set:\n----------------------------------------------------------------");
             for (String v : homes) {
-                player.sendMessage(ChatColor.AQUA + v);
+                Location location = config.getLocation(v);
+                player.sendMessage(ChatColor.WHITE + v +
+                        ChatColor.AQUA + "  world: " + ChatColor.WHITE + location.getWorld().getName() +
+                        ChatColor.GREEN + "  x: " + ChatColor.WHITE + location.getBlockX() +
+                        ChatColor.GREEN + "  y: " + ChatColor.WHITE + location.getBlockY() +
+                        ChatColor.GREEN + "  z: " + ChatColor.WHITE + location.getBlockZ());
             }
         }
         return false;
