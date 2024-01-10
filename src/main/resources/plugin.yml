@@ -8,13 +8,13 @@ commands:
     permission: home.home
   sethome:
     permission: home.set
-    aliases: [homeset]
+    aliases: [ homeset ]
   delhome:
     permission: home.del
-    aliases: [homedel, deletehome, homedelete]
+    aliases: [ homedel, deletehome, homedelete ]
   listhome:
     permission: home.list
-    aliases: [homelist]
+    aliases: [ homelist ]
 
 permissions:
   home.home:
