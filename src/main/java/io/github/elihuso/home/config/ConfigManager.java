@@ -18,4 +18,8 @@ public class ConfigManager {
     public boolean AllowMultiple() {
         return config.getBoolean("allowMultiple", true);
     }
+
+    public boolean AllowBed() {
+        return config.getBoolean("allowBed", true);
+    }
 }

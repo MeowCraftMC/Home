@@ -2,8 +2,10 @@ package io.github.elihuso.home;
 
 import io.github.elihuso.home.config.ConfigManager;
 import io.github.elihuso.home.config.HomeSet;
+import org.bukkit.Bukkit;
 import org.bukkit.ChatColor;
 import org.bukkit.Location;
+import org.bukkit.OfflinePlayer;
 import org.bukkit.command.Command;
 import org.bukkit.command.CommandSender;
 import org.bukkit.entity.Player;
@@ -23,6 +25,7 @@ public final class Home extends JavaPlugin {
         getCommand("sethome").setTabCompleter(this);
         getCommand("delhome").setTabCompleter(this);
         getCommand("listhome").setTabCompleter(this);
+        getCommand("bed").setTabCompleter(this);
     }
 
     public boolean onCommand(@NotNull CommandSender sender, @NotNull Command command, @NotNull String commandLabel, String[] args) {
@@ -78,6 +81,16 @@ public final class Home extends JavaPlugin {
                         ChatColor.GREEN + "  y: " + ChatColor.WHITE + location.getBlockY() +
                         ChatColor.GREEN + "  z: " + ChatColor.WHITE + location.getBlockZ());
             }
+        }
+        if (command.getName().equalsIgnoreCase("bed")) {
+            OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getUniqueId());
+            Location location = player.getBedSpawnLocation() == null ? offlinePlayer.getBedSpawnLocation() : player.getBedSpawnLocation();
+            if (location == null) {
+                player.sendMessage(ChatColor.RED + "Failed to find your bed; You may never sleep or your bed is unavailable.");
+                return false;
+            }
+            player.teleport(location);
+            return true;
         }
         return false;
     }
