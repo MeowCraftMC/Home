@@ -83,6 +83,9 @@ public final class Home extends JavaPlugin {
             }
         }
         if (command.getName().equalsIgnoreCase("bed")) {
+            if (!config.AllowBed()) {
+                player.sendMessage(ChatColor.RED + "This server doesn't allowed teleport to bed.");
+            }
             OfflinePlayer offlinePlayer = Bukkit.getOfflinePlayer(player.getUniqueId());
             Location location = player.getBedSpawnLocation() == null ? offlinePlayer.getBedSpawnLocation() : player.getBedSpawnLocation();
             if (location == null) {
