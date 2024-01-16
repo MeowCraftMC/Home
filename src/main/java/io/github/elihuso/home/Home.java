@@ -102,7 +102,7 @@ public final class Home extends JavaPlugin {
         if (!(sender instanceof Player)) return list;
         Player player = (Player) sender;
         if (command.getName().equalsIgnoreCase("home") || command.getName().equalsIgnoreCase("delhome")) {
-            if (args.length == 0) {
+            if (args.length <= 1) {
                 String[] homes = HomeSet.listHome(this, player.getUniqueId());
                 list.addAll(Arrays.asList(homes));
             }
